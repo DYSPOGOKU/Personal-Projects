@@ -1,0 +1,31 @@
+.big-card {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 4 cards in each row */
+  gap: 0; /* no spacing between cards */
+}
+
+.small-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #000;
+  padding: 46px; /* further increased padding */
+  text-decoration: none;
+  color: #000;
+}
+
+.small-card:nth-child(4n+1) {
+  background-color: #f00; /* red */
+}
+
+.small-card:nth-child(4n+2) {
+  background-color: #0f0; /* green */
+}
+
+.small-card:nth-child(4n+3) {
+  background-color: #00f; /* blue */
+}
+
+.small-card:nth-child(4n) {
+  background-color: #ff0; /* yellow */
+}
