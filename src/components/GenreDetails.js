@@ -10,26 +10,43 @@ const GenreDetails = () => {
   const [animeList, setAnimeList] = useState([]);
 
   useEffect(() => {
+    setAnimeList([]);
     const fetchAnime = async () => {
-      if (!hasMorePages) return;
+      setAnimeList([])
+      let hasMore = true;
+      let page = 1;
 
-      try {
-        const response = await axios.get(`https://api.jikan.moe/v4/anime?page=${currentPage}`);
-        const newAnimeByGenre = response.data.data.filter(anime =>
-          anime.genres.some(g => g.name === genre)
-        );
-        setAnimeList(prevAnimeList => [...prevAnimeList, ...newAnimeByGenre]);
+      while (hasMore) {
+        try {
+          const response = await axios.get(`https://api.jikan.moe/v4/anime?page=${page}`);
+          const newAnimeByGenre = response.data.data.filter(anime =>
+            anime.genres.some(g => g.name === genre)
+          );
+          setAnimeList(prevAnimeList => [...prevAnimeList, ...newAnimeByGenre]);
 
-        setHasMorePages(response.data.pagination.has_next_page);
-        setCurrentPage(prevPage => prevPage + 1);
-      } catch (error) {
-        console.error("Failed to fetch anime:", error);
-        setHasMorePages(false);
+          // Add anime to local storage based on genre
+          newAnimeByGenre.forEach(anime => {
+            const genreKey = `genre_${genre}`;
+            const storedAnimeList = localStorage.getItem(genreKey);
+            const updatedAnimeList = storedAnimeList ? JSON.parse(storedAnimeList) : [];
+            updatedAnimeList.push(anime);
+            localStorage.setItem(genreKey, JSON.stringify(updatedAnimeList));
+          });
+
+          hasMore = response.data.pagination.has_next_page;
+          page += 1;
+
+          // Add a delay of 1 second between requests
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        } catch (error) {
+          console.error("Failed to fetch anime:", error);
+          hasMore = false;
+        }
       }
     };
 
     fetchAnime();
-  }, [genre, currentPage, hasMorePages]);
+  }, [genre]);
 
   return (
     <InfiniteScroll

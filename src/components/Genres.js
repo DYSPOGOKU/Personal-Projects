@@ -29,7 +29,7 @@ const Genres = () => {
     }
     return color;
   }
-  const genres = ['Romance', 'Sci-Fi', 'Slice Of Life', 'Sports', 'Suspense', 'Isekai', 'Mecha', 'School', 'Shounen','action','adventure','comedy','drama','fantasy','mystery'];
+  const genres = ['Romance', 'Sci-Fi', 'Slice of Life', 'Sports', 'Suspense', 'Isekai', 'Mecha', 'School', 'Shounen','Action','Adventure','Comedy','Drama','Fantasy','Mystery'];
 
   return (
     <div className="big-card">

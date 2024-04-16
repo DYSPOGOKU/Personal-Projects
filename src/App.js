@@ -10,6 +10,7 @@ import Home from './components/Home';
 import Topanime from './components/Topanime';
 import Genres from './components/Genres';
 import GenreDetails from './components/GenreDetails';
+import Manga from './components/Manga';
 function App() {
   const appStyle = {
     backgroundColor: '#121212', // Set background color to #121212
@@ -25,6 +26,7 @@ function App() {
         <Route exact path="/anime/top" element={<Topanime/>}/>
         <Route exact path="/anime/genres" element={<Genres/>}/>
         <Route path="/genre/:genre" element={<GenreDetails/>} />
+        <Route exact path="/manga" element={<Manga/>}/>
       </Routes>
       </Router>
     </div>
