@@ -1,0 +1,81 @@
+/* Help.css */
+
+.help-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f2f2f2;
+}
+
+.help-content {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  animation: fade-in 0.5s ease-in-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.help-title {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.help-description {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.help-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.help-email,
+.help-number {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.help-label {
+  font-size: 14px;
+  color: #999;
+  margin-right: 10px;
+}
+
+.help-value {
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+}
+
+.help-value::before {
+  content: '+';
+  font-size: 14px;
+  color: #999;
+  margin-right: 5px;
+}
+
+.help-value::after {
+  content: ' ';
+}
+
+.help-value:hover {
+  color: #ff6600;
+  cursor: pointer;
+  text-decoration: underline;
+}
